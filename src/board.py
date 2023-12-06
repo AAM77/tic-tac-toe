@@ -1,21 +1,18 @@
 class Board:
+    
+    def __init__(self):
+        self.positions = self.generate_board_positions()
         
-    def generate_board_positions(self):
+    def generate_board_positions(self) -> list[str]:
         return [" "]*9
     
-    def create_first_row(self):
-        return "|".join(self.generate_board_positions()[:3])
+    def create_row(self, starting_index: int, ending_index: int) -> str:
+        return "|".join(self.positions[starting_index:ending_index])
     
-    def create_second_row(self):
-        return "|".join(self.generate_board_positions()[3:6])
-    
-    def create_third_row(self):
-        return "|".join(self.generate_board_positions()[6:9])
-    
-    def generate_board(self):
-        first_row = self.create_first_row()
-        second_row = self.create_second_row()
-        third_row = self.create_third_row()
-        divider = "-----"
-        board = "\n".join([first_row, divider, second_row, divider, third_row])
+    def generate_board(self) -> str:
+        first_row: str = self.create_row(0, 3)
+        second_row: str = self.create_row(3, 6)
+        third_row: str = self.create_row(6, 9)
+        divider: str = "-----"
+        board: str = "\n".join([first_row, divider, second_row, divider, third_row])
         return board
